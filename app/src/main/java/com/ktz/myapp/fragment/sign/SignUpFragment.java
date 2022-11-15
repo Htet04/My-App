@@ -3,6 +3,7 @@ package com.ktz.myapp.fragment.sign;
 import static com.ktz.myapp.Utils.chByType;
 import static com.ktz.myapp.Utils.clearErrorText;
 import static com.ktz.myapp.Utils.isContainSpecialChar;
+import static com.ktz.myapp.Utils.isEmailValidation;
 
 import android.graphics.Color;
 import android.os.Bundle;
@@ -85,6 +86,9 @@ public class SignUpFragment extends Fragment {
             }
             if (getEmail.isEmpty()) {
                 emailLayout.setError("Email can't be empty!");
+            }
+            if (!isEmailValidation(getContext(),getEmail)){
+                emailLayout.setError("Email is invalid!");
             }
             if (getPass.isEmpty()) {
                 passLayout.setError("Password can't be empty!");

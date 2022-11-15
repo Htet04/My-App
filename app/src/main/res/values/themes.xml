@@ -43,10 +43,10 @@
         <item name="boxStrokeColor">@color/white</item>
         <item name="boxStrokeWidth">2dp</item>
         <item name="boxStrokeWidthFocused">2dp</item>
-        <item name="boxCornerRadiusTopStart">20dp</item>
+        <!--<item name="boxCornerRadiusTopStart">20dp</item>
         <item name="boxCornerRadiusTopEnd">20dp</item>
         <item name="boxCornerRadiusBottomStart">20dp</item>
-        <item name="boxCornerRadiusBottomEnd">20dp</item>
+        <item name="boxCornerRadiusBottomEnd">20dp</item>-->
         <!--error style-->
         <item name="boxStrokeErrorColor">#D2FA6262</item>
         <item name="errorTextColor">@color/errortexticon</item>

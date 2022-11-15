@@ -1,5 +1,6 @@
 package com.ktz.myapp;
 
+import android.content.Context;
 import android.graphics.Color;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -26,6 +27,10 @@ public class Utils {
             status = false;
             cardView.setCardBackgroundColor(Color.RED);
         }
+    }
+
+    public static boolean isEmailValidation(Context context,String s){
+        return s.matches(context.getString(R.string.emailValid));
     }
 
 
