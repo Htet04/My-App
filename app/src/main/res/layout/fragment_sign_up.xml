@@ -29,44 +29,44 @@
         android:textColor="#FFFEFE"
         android:textSize="18sp"
         android:layout_marginBottom="16dp"
-        app:layout_constraintBottom_toTopOf="@id/edt_name_layout"
+        app:layout_constraintBottom_toTopOf="@id/nameLayout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/edt_name_layout"
+        android:id="@+id/nameLayout"
         style="@style/Theme.MyApp.TextInputLayout"
         android:layout_marginBottom="16dp"
         android:hint="Name"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/edt_email_layout">
+        app:layout_constraintBottom_toTopOf="@id/emailLayout">
 
         <com.google.android.material.textfield.TextInputEditText
             style="@style/Theme.MyApp.EditText"
-            android:id="@+id/edt_signup_name"
+            android:id="@+id/name"
             android:imeOptions="actionNext"
             android:inputType="textPersonName" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/edt_email_layout"
+        android:id="@+id/emailLayout"
         style="@style/Theme.MyApp.TextInputLayout"
         android:layout_marginBottom="16dp"
         android:hint="Email"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/edt_pass_layout">
+        app:layout_constraintBottom_toTopOf="@id/passLayout">
 
         <com.google.android.material.textfield.TextInputEditText
             style="@style/Theme.MyApp.EditText"
-            android:id="@+id/edt_signup_email"
+            android:id="@+id/email"
             android:imeOptions="actionNext"
             android:inputType="textEmailAddress" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/edt_pass_layout"
+        android:id="@+id/passLayout"
         style="@style/Theme.MyApp.TextInputLayout"
         android:hint="Password"
         app:endIconMode="password_toggle"
@@ -80,7 +80,7 @@
         app:passwordToggleEnabled="true">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/edt_signup_pass"
+            android:id="@+id/pass"
             style="@style/Theme.MyApp.EditText"
             android:imeOptions="actionDone"
             android:inputType="textPassword" />
@@ -95,7 +95,7 @@
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/edt_pass_layout">
+        app:layout_constraintTop_toBottomOf="@id/passLayout">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -105,7 +105,7 @@
             android:padding="2dp">
 
             <androidx.cardview.widget.CardView
-                android:id="@+id/pass_up"
+                android:id="@+id/chUpper"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="2dp"
@@ -142,7 +142,7 @@
             <androidx.cardview.widget.CardView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/pass_lo"
+                android:id="@+id/chLower"
                 android:layout_margin="2dp"
                 app:cardBackgroundColor="#ddd"
                 app:cardPreventCornerOverlap="true"
@@ -178,7 +178,7 @@
             <androidx.cardview.widget.CardView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/pass_num"
+                android:id="@+id/chNum"
                 android:layout_margin="2dp"
                 app:cardBackgroundColor="#ddd"
                 app:cardPreventCornerOverlap="true"
@@ -214,7 +214,7 @@
             <androidx.cardview.widget.CardView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/pass_pun"
+                android:id="@+id/chSpecial"
                 android:layout_margin="2dp"
                 app:cardBackgroundColor="#ddd"
                 app:cardPreventCornerOverlap="true"
@@ -250,7 +250,7 @@
             <androidx.cardview.widget.CardView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/pass_length"
+                android:id="@+id/chLength"
                 android:layout_margin="2dp"
                 app:cardBackgroundColor="#ddd"
                 app:cardPreventCornerOverlap="true"
@@ -279,7 +279,7 @@
     </LinearLayout>
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/btn_sign_up"
+        android:id="@+id/btnSignUp"
         style="@style/Theme.MyApp.Button"
         android:text="Sign Up"
         android:textSize="20sp"
@@ -289,13 +289,13 @@
         app:layout_constraintTop_toBottomOf="@+id/pass_ch" />
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/btn_sign_in"
+        android:id="@+id/btnSignIn"
         style="@style/Theme.MyApp.Button"
         android:text="Sign In"
         android:theme="@style/Theme.MyApp.Button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_sign_up" />
+        app:layout_constraintTop_toBottomOf="@+id/btnSignUp" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

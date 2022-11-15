@@ -24,7 +24,7 @@
         app:layout_constraintVertical_bias="0.26" />
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/edt_name_layout"
+        android:id="@+id/nameLayout"
         style="@style/Theme.MyApp.TextInputLayout"
         android:layout_marginTop="24dp"
         android:hint="Name"
@@ -33,30 +33,30 @@
         app:layout_constraintTop_toBottomOf="@+id/textView">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/edt_signin_name"
+            android:id="@+id/name"
             style="@style/Theme.MyApp.EditText"
             android:imeOptions="actionNext"
             android:inputType="textPersonName" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/edt_email_layout"
+        android:id="@+id/emailLayout"
         style="@style/Theme.MyApp.TextInputLayout"
         android:layout_marginTop="16dp"
         android:hint="Email"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edt_name_layout">
+        app:layout_constraintTop_toBottomOf="@+id/nameLayout">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/edt_signin_email"
+            android:id="@+id/email"
             style="@style/Theme.MyApp.EditText"
             android:imeOptions="actionNext"
             android:inputType="textEmailAddress" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/edt_pass_layout"
+        android:id="@+id/passLayout"
         style="@style/Theme.MyApp.TextInputLayout"
         android:layout_marginTop="16dp"
         android:hint="Password"
@@ -64,34 +64,34 @@
         app:endIconTint="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edt_email_layout"
+        app:layout_constraintTop_toBottomOf="@+id/emailLayout"
         app:passwordToggleEnabled="true">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/edt_signin_pass"
+            android:id="@+id/pass"
             style="@style/Theme.MyApp.EditText"
             android:imeOptions="actionDone"
             android:inputType="textPassword" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/btn_sign_in"
+        android:id="@+id/btnSignIn"
         style="@style/Theme.MyApp.Button"
         android:text="Sign In"
         android:textSize="20sp"
         android:theme="@style/Theme.MyApp.Button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edt_pass_layout" />
+        app:layout_constraintTop_toBottomOf="@+id/passLayout" />
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/btn_sign_up"
+        android:id="@+id/btnSignUp"
         style="@style/Theme.MyApp.Button"
         android:text="Sign Up"
         android:theme="@style/Theme.MyApp.Button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_sign_in" />
+        app:layout_constraintTop_toBottomOf="@+id/btnSignIn" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
