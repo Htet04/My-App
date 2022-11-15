@@ -9,8 +9,11 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.ktz.myapp.R;
+import com.ktz.myapp.databinding.FragmentSignUpBinding;
 
 public class SignUpFragment extends Fragment {
+
+    FragmentSignUpBinding binding;
 
     public SignUpFragment() {
         // Required empty public constructor
@@ -19,7 +22,8 @@ public class SignUpFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_sign_up, container, false);
+        binding = FragmentSignUpBinding.inflate(getLayoutInflater());
+
+        return binding.getRoot();
     }
 }
