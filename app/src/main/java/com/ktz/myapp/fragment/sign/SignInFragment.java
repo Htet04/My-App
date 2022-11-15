@@ -30,6 +30,7 @@ public class SignInFragment extends Fragment {
                              Bundle savedInstanceState) {
         binding = FragmentSignInBinding.inflate(getLayoutInflater());
         // initialization of View Objects
+        initializer();
 
         return binding.getRoot();
     }
