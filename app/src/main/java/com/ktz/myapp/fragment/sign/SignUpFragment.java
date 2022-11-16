@@ -5,7 +5,9 @@ import static com.ktz.myapp.Utils.clearErrorText;
 import static com.ktz.myapp.Utils.isContainSpecialChar;
 import static com.ktz.myapp.Utils.isEmailValidation;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.text.Editable;
@@ -32,6 +34,7 @@ public class SignUpFragment extends Fragment {
 
     FragmentSignUpBinding binding;
     DataBaseHelper db;
+    SharedPreferences preferences;
     TextInputLayout nameLayout, emailLayout, passLayout;
     TextInputEditText name, email, pass;
     CardView chUpper, chLower, chNum, chSpecial, chLength;
@@ -102,6 +105,7 @@ public class SignUpFragment extends Fragment {
                 long status = db.addUser(getName,getEmail,getPass);
                 if (status!=-1){
                     Toast.makeText(getContext(), "Sign Up Success", Toast.LENGTH_SHORT).show();
+                    preferences.edit().putBoolean("signIn",true).commit();
                     getActivity().startActivity(new Intent().setClass(getContext(), MainActivity.class).putExtra("userId",status));
                     getActivity().finish();
                 }else {
@@ -114,6 +118,7 @@ public class SignUpFragment extends Fragment {
 
     private void initializer() {
         db = new DataBaseHelper(getContext());
+        preferences = getContext().getSharedPreferences("sign", Context.MODE_PRIVATE);
         nameLayout = binding.nameLayout;
         emailLayout = binding.emailLayout;
         passLayout = binding.passLayout;

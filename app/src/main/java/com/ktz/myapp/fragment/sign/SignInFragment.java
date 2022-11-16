@@ -3,11 +3,14 @@ package com.ktz.myapp.fragment.sign;
 import static com.ktz.myapp.Utils.clearErrorText;
 import static com.ktz.myapp.Utils.isEmailValidation;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -23,8 +26,9 @@ import com.ktz.myapp.databinding.FragmentSignInBinding;
 
 public class SignInFragment extends Fragment {
 
-    DataBaseHelper db;
     FragmentSignInBinding binding;
+    DataBaseHelper db;
+    SharedPreferences preferences;
     TextInputLayout nameLayout, emailLayout, passLayout;
     TextInputEditText name, email, pass;
     MaterialButton btnSignUp, btnSignIn;
@@ -63,8 +67,10 @@ public class SignInFragment extends Fragment {
             }
             if (!Utils.isEmpty(name, email, pass)) {
                 //do the stuff here
-                for (int i = 0; i < db.userCount(); i++) {
+                for (int i = 1; i <= db.userCount(); i++) {
                     if (getName.equals(db.getValue(i, DataBaseHelper.KEY_NAME))&&getEmail.equals(db.getValue(i,DataBaseHelper.KEY_EMAIL))&&getPass.equals(db.getValue(i,DataBaseHelper.KEY_PASS))){
+                        Toast.makeText(getContext(), "Sign In Success", Toast.LENGTH_SHORT).show();
+                        preferences.edit().putBoolean("singIn",true).commit();
                         getActivity().startActivity(new Intent(getContext(), MainActivity.class).putExtra("userId",i));
                         getActivity().finish();
                     }
@@ -76,6 +82,7 @@ public class SignInFragment extends Fragment {
 
     private void initializer() {
         db = new DataBaseHelper(getContext());
+        preferences = getContext().getSharedPreferences("sign", Context.MODE_PRIVATE);
         nameLayout = binding.nameLayout;
         emailLayout = binding.emailLayout;
         passLayout = binding.passLayout;
