@@ -3,6 +3,7 @@ package com.ktz.myapp.fragment.sign;
 import static com.ktz.myapp.Utils.chByType;
 import static com.ktz.myapp.Utils.clearErrorText;
 import static com.ktz.myapp.Utils.isContainSpecialChar;
+import static com.ktz.myapp.Utils.isEmailExist;
 import static com.ktz.myapp.Utils.isEmailValidation;
 
 import android.content.Context;
@@ -87,28 +88,33 @@ public class SignUpFragment extends Fragment {
             }
         });
         btnSignUp.setOnClickListener(v -> {
-            String getName = name.getText().toString(), getEmail = email.getText().toString(), getPass = pass.getText().toString();
-            if (getName.isEmpty()) {
+            String Name = name.getText().toString(), Email = email.getText().toString(), Pass = pass.getText().toString();
+            if (Name.isEmpty()) {
                 nameLayout.setError("Name can't be empty!");
             }
-            if (getEmail.isEmpty()) {
+            if (Email.isEmpty()) {
                 emailLayout.setError("Email can't be empty!");
             }
-            if (!isEmailValidation(getEmail)){
+            if (!isEmailValidation(Email)) {
                 emailLayout.setError("Email is invalid!");
             }
-            if (getPass.isEmpty()) {
+            if (Pass.isEmpty()) {
                 passLayout.setError("Password can't be empty!");
             }
-            if (!Utils.isEmpty(name, email, pass)) {
+            if (!Utils.isEmpty(Name, Email, Pass)) {
                 //do the stuff here
-                long status = db.addUser(getName,getEmail,getPass);
-                if (status!=-1){
+                if (isEmailExist(getContext(),Email)){
+                    Toast.makeText(getContext(),"Account with this email exist login instead.",Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                long status = db.addUser(Name, Email, Pass);
+                if (status != -1) {
                     Toast.makeText(getContext(), "Sign Up Success", Toast.LENGTH_SHORT).show();
-                    preferences.edit().putBoolean("signIn",true).commit();
-                    getActivity().startActivity(new Intent().setClass(getContext(), MainActivity.class).putExtra("userId",status));
+                    preferences.edit().putBoolean("signIn", true).commit();
+                    preferences.edit().putLong("userId", status).commit();
+                    getActivity().startActivity(new Intent().setClass(getContext(), MainActivity.class).putExtra("userId", status));
                     getActivity().finish();
-                }else {
+                } else {
                     Toast.makeText(getContext(), "Unable to Sign Up", Toast.LENGTH_SHORT).show();
                 }
             }

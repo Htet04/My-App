@@ -66,15 +66,16 @@ public class SignInFragment extends Fragment {
             if (Pass.isEmpty()) {
                 passLayout.setError("Password can't be empty!");
             }
-            if (!Utils.isEmpty(name, email, pass)) {
+            if (!Utils.isEmpty(Name, Email, Pass)) {
                 //do the stuff here
                 for (int i = 1; i <= db.userCount(); i++) {
                     if (Name.equals(db.getValue(i, DataBaseHelper.KEY_NAME))&&Email.equals(db.getValue(i,DataBaseHelper.KEY_EMAIL))&&Pass.equals(db.getValue(i,DataBaseHelper.KEY_PASS))){
                         Toast.makeText(getContext(), "Sign In Success", Toast.LENGTH_SHORT).show();
                         preferences.edit().putBoolean("signIn",true).commit();
+                        preferences.edit().putLong("userId",(long) i).commit();
                         getActivity().startActivity(new Intent(getContext(), MainActivity.class).putExtra("userId",i));
                         getActivity().finish();
-                        new SignUpFragment().onDestroy();
+                        break;
                     }
                 }
             }
