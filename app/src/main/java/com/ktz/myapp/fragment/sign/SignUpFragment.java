@@ -5,6 +5,7 @@ import static com.ktz.myapp.Utils.clearErrorText;
 import static com.ktz.myapp.Utils.isContainSpecialChar;
 import static com.ktz.myapp.Utils.isEmailValidation;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.text.Editable;
@@ -12,6 +13,7 @@ import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
@@ -20,13 +22,16 @@ import androidx.fragment.app.Fragment;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
+import com.ktz.myapp.MainActivity;
 import com.ktz.myapp.R;
 import com.ktz.myapp.Utils;
+import com.ktz.myapp.database.DataBaseHelper;
 import com.ktz.myapp.databinding.FragmentSignUpBinding;
 
 public class SignUpFragment extends Fragment {
 
     FragmentSignUpBinding binding;
+    DataBaseHelper db;
     TextInputLayout nameLayout, emailLayout, passLayout;
     TextInputEditText name, email, pass;
     CardView chUpper, chLower, chNum, chSpecial, chLength;
@@ -43,7 +48,6 @@ public class SignUpFragment extends Fragment {
         binding = FragmentSignUpBinding.inflate(getLayoutInflater());
         // initialization of View Objects
         initializer();
-
         finalFun();
 
         return binding.getRoot();
@@ -87,7 +91,7 @@ public class SignUpFragment extends Fragment {
             if (getEmail.isEmpty()) {
                 emailLayout.setError("Email can't be empty!");
             }
-            if (!isEmailValidation(getContext(),getEmail)){
+            if (!isEmailValidation(getEmail)){
                 emailLayout.setError("Email is invalid!");
             }
             if (getPass.isEmpty()) {
@@ -95,12 +99,21 @@ public class SignUpFragment extends Fragment {
             }
             if (!Utils.isEmpty(name, email, pass)) {
                 //do the stuff here
+                long status = db.addUser(getName,getEmail,getPass);
+                if (status!=-1){
+                    Toast.makeText(getContext(), "Sign Up Success", Toast.LENGTH_SHORT).show();
+                    getActivity().startActivity(new Intent().setClass(getContext(), MainActivity.class).putExtra("userId",status));
+                    getActivity().finish();
+                }else {
+                    Toast.makeText(getContext(), "Unable to Sign Up", Toast.LENGTH_SHORT).show();
+                }
             }
         });
         btnSignIn.setOnClickListener(v -> getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.signMainFrame, new SignInFragment()).commit());
     }
 
     private void initializer() {
+        db = new DataBaseHelper(getContext());
         nameLayout = binding.nameLayout;
         emailLayout = binding.emailLayout;
         passLayout = binding.passLayout;
