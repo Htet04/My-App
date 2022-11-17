@@ -14,9 +14,15 @@ import com.ktz.myapp.database.DataBaseHelper;
 public class Utils {
 
     // check is the text empty
+    public static boolean isEmpty(String name, String email, String pass,String phone,String age,String gender,String country) {
+        if (name != null && email != null && pass != null) {
+            return name.isEmpty() && email.isEmpty() && pass.isEmpty()&&phone.isEmpty()&&age.isEmpty()&&gender.isEmpty()&&country.isEmpty();
+        }
+        return false;
+    }
     public static boolean isEmpty(String name, String email, String pass) {
         if (name != null && email != null && pass != null) {
-            return name.isEmpty() && email.isEmpty() && isEmailValidation(email);
+            return name.isEmpty() && email.isEmpty() && pass.isEmpty();
         }
         return false;
     }
@@ -33,12 +39,11 @@ public class Utils {
             cardView.setCardBackgroundColor(Color.RED);
         }
     }
-
     /**
      * Check Email Format
      */
     public static boolean isEmailValidation(String s) {
-        return s.matches("(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|\"(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21\\x23-\\x5b\\x5d-\\x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])*\")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\\[(?:(?:(2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9]))\\.){3}(?:(2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9])|[a-z0-9-]*[a-z0-9]:(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21-\\x5a\\x53-\\x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])+)\\])");
+        return s.matches("^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$");
     }
 
 
@@ -48,7 +53,7 @@ public class Utils {
     public static boolean isContainSpecialChar(String s) {
         return s.contains("~") | s.contains("!") | s.contains("@") | s.contains("#") |
                 s.contains("$") | s.contains("%") | s.contains("^") | s.contains("&") |
-                s.contains("*") | s.contains("(") | s.contains(")") | s.contains("-") |
+                s.contains("*") | s.contains("(") | s.contains(")") | s.contains("_") |
                 s.contains("-") | s.contains("=") | s.contains("+") | s.contains("[") |
                 s.contains("]") | s.contains("{") | s.contains("}") | s.contains("\\") |
                 s.contains("|") | s.contains(";") | s.contains(":") | s.contains("\"") |
@@ -82,7 +87,7 @@ public class Utils {
 
     public static boolean isEmailExist(Context context,String email) {
         DataBaseHelper db = new DataBaseHelper(context);
-        for (int i = 0; i <= db.userCount(); i++) {
+        for (int i = 1; i <= db.userCount(); i++) {
             if (email.equals(db.getValue(i,DataBaseHelper.KEY_EMAIL))){
                 return true;
             }

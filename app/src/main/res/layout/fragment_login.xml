@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/log_bg"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".fragment.sign.SignInFragment">
-
+    android:gravity="center"
+    android:orientation="vertical"
+    tools:context=".fragment.LoginFragment">
 
     <TextView
         android:id="@+id/textView"
@@ -16,27 +17,21 @@
         android:shadowDx="4"
         android:text="Sign In to My App"
         android:textColor="#FFFEFE"
-        android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.26" />
+        android:textSize="18sp" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/nameLayout"
         style="@style/Theme.MyApp.TextInputLayout"
         android:layout_marginTop="24dp"
         android:hint="Name"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView">
+        app:startIconDrawable="@drawable/ic_baseline_person_24"
+        app:startIconTint="@color/white">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/name"
             style="@style/Theme.MyApp.EditText"
             android:imeOptions="actionNext"
-            android:inputType="textPersonName" />
+            android:inputType="text|textCapWords|textPersonName" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -44,9 +39,8 @@
         style="@style/Theme.MyApp.TextInputLayout"
         android:layout_marginTop="16dp"
         android:hint="Email"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/nameLayout">
+        app:startIconDrawable="@drawable/ic_baseline_alternate_email_24"
+        app:startIconTint="@color/white">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/email"
@@ -62,10 +56,9 @@
         android:hint="Password"
         app:endIconMode="password_toggle"
         app:endIconTint="@color/white"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/emailLayout"
-        app:passwordToggleEnabled="true">
+        app:passwordToggleEnabled="true"
+        app:startIconDrawable="@drawable/ic_baseline_password_24"
+        app:startIconTint="@color/white">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/pass"
@@ -74,24 +67,36 @@
             android:inputType="textPassword" />
     </com.google.android.material.textfield.TextInputLayout>
 
+
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btnSignIn"
         style="@style/Theme.MyApp.Button"
         android:text="Sign In"
-        android:textSize="20sp"
-        android:theme="@style/Theme.MyApp.Button"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/passLayout" />
+        android:theme="@style/Theme.MyApp.Button" />
 
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/btnSignUp"
-        style="@style/Theme.MyApp.Button"
-        android:text="Sign Up"
-        android:theme="@style/Theme.MyApp.Button"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnSignIn" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:padding="4dp">
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Doesn't have account?Then, "
+            android:textColor="@color/white"
+            android:textSize="14sp" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <TextView
+            android:id="@+id/btnSignUp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Sign Up"
+            android:background="@drawable/textbtn_ripple"
+            android:textColor="#ff0"
+            android:textSize="15sp"
+            android:theme="@style/Theme.MyApp.Button" />
+    </LinearLayout>
+</LinearLayout>

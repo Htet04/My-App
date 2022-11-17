@@ -23,16 +23,20 @@ public class MainActivity extends AppCompatActivity {
         preferences = getSharedPreferences("sign",MODE_PRIVATE);
         db = new DataBaseHelper(this);
         binding.mText.setText("Hello "+db.getValue(preferences.getLong("userId",1),DataBaseHelper.KEY_NAME)+"\n"+
-                "Email: "+db.getValue(preferences.getLong("userId",1),DataBaseHelper.KEY_EMAIL));
+                "Email: "+db.getValue(preferences.getLong("userId",1),DataBaseHelper.KEY_EMAIL)+"\n"+
+                "Phone: "+db.getValue(preferences.getLong("userId",1),DataBaseHelper.KEY_PHONE)+"\n"+
+                "Country: "+db.getValue(preferences.getLong("userId",1),DataBaseHelper.KEY_COUNTRY)+"\n"+
+                "Age: "+db.getValue(preferences.getLong("userId",1),DataBaseHelper.KEY_AGE)+"\n"+
+                "Gender: "+db.getValue(preferences.getLong("userId",1),DataBaseHelper.KEY_GENDER));
         binding.btndeleteAcc.setOnClickListener(v -> {
             db.deleteUser(preferences.getLong("userId",1));
             preferences.edit().putBoolean("signIn",false).commit();
-            startActivity(new Intent(getApplicationContext(),SignActivity.class));
+            startActivity(new Intent(getApplicationContext(), SplashActivity.class));
             finish();
         });
         binding.btnSignOut.setOnClickListener(v -> {
             preferences.edit().putBoolean("signIn",false).commit();
-            startActivity(new Intent(getApplicationContext(),SignActivity.class));
+            startActivity(new Intent(getApplicationContext(), SplashActivity.class));
             finish();
         });
     }
